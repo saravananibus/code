@@ -40,8 +40,8 @@ def index():
 
 @app.route('/submit', methods=['POST'])
 def submit():
-    username = request.form['username']
-    dob = request.form['dob']
+    username = request.form['user_name']
+    dob = request.form['date_of_birth']
 
     # Connect to the database
     connection = pymysql.connect(host=DB_HOST, user=DB_USER, password=DB_PASSWORD, db=DB_NAME)
