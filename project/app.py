@@ -4,10 +4,35 @@ import pymysql
 app = Flask(__name__)
 
 # Replace these with your database credentials
-DB_HOST = 'mydbinstance.ap-southeast-1.rds.amazonaws.com
+DB_HOST = 'your-db-host'
 DB_USER = 'admin'
 DB_PASSWORD = 'admin123'
-DB_NAME = "mydbinstance"
+DB_NAME = 'mydbinstance'
+
+def create_database_and_table():
+    # Connect to MySQL server
+    connection = pymysql.connect(host=DB_HOST, user=DB_USER, password=DB_PASSWORD)
+
+    try:
+        with connection.cursor() as cursor:
+            # Create the database
+            cursor.execute(f"CREATE DATABASE IF NOT EXISTS {DB_NAME}")
+            cursor.execute(f"USE {DB_NAME}")
+
+            # Create the user_data table
+            cursor.execute("""
+                CREATE TABLE IF NOT EXISTS user_data (
+                    id INT AUTO_INCREMENT PRIMARY KEY,
+                    username VARCHAR(255) NOT NULL,
+                    dob DATE NOT NULL
+                )
+            """)
+        connection.commit()
+    finally:
+        connection.close()
+
+# Create database and table before running the app
+create_database_and_table()
 
 @app.route('/')
 def index():
