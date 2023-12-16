@@ -28,6 +28,9 @@ def create_database_and_table():
                 )
             """)
         connection.commit()
+        print("Database and table created successfully")
+    except pymysql.err.OperationalError as e:
+        print(f"Error: {e}")
     finally:
         connection.close()
 
