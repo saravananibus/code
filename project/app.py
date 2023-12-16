@@ -7,7 +7,7 @@ app = Flask(__name__)
 DB_HOST = 'myrdsinstance.cyf3uod2jso1.ap-south-1.rds.amazonaws.com'
 DB_USER = 'admin'
 DB_PASSWORD = 'admin123'
-
+DB_NAME = 'myrdsinstance' 
 
 def create_database_and_table():
     # Connect to MySQL server
@@ -16,8 +16,8 @@ def create_database_and_table():
     try:
         with connection.cursor() as cursor:
             # Create the database
-            cursor.execute(f"CREATE DATABASE IF NOT EXISTS {DB_NAME}")
-            cursor.execute(f"USE {DB_NAME}")
+            cursor.execute(f"CREATE DATABASE IF NOT EXISTS {myrdsinstance}")
+            cursor.execute(f"USE {myrdsinstance}")
 
             # Create the user_data table
             cursor.execute("""
@@ -44,7 +44,7 @@ def submit():
     dob = request.form['date_of_birth']
 
     # Connect to the database
-    connection = pymysql.connect(host=DB_HOST, user=DB_USER, password=DB_PASSWORD, db=DB_NAME)
+    connection = pymysql.connect(host=DB_HOST, user=DB_USER, password=DB_PASSWORD, db=DB_NAME)  # Add db=DB_NAME
 
     try:
         with connection.cursor() as cursor:
