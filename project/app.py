@@ -56,10 +56,10 @@ def submit():
             sql = "INSERT INTO user_data (username, dob) VALUES (%s, %s)"
             cursor.execute(sql, (username, dob))
         connection.commit()
-        success_message = colored("Data saved successfully", "green", attrs=["bold"])
+        success_message = "\033[1;32mData saved successfully\033[0m"
         return success_message
     except Exception as e:
-        error_message = colored(f"Error: {str(e)}", "red", attrs=["bold"])
+         error_message = "\033[1;31mError: {}\033[0m".format(str(e))
         print(error_message) 
     finally:
         connection.close()
