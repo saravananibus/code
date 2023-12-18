@@ -61,6 +61,7 @@ def submit():
     except Exception as e:
          error_message = "\033[1;31mError: {}\033[0m".format(str(e))
          print(error_message) 
+    
     finally:
         connection.close()
 
