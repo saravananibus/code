@@ -57,10 +57,12 @@ def submit():
             cursor.execute(sql, (username, dob))
         connection.commit()
         success_message = "\033[1;32mData saved successfully\033[0m"
-        return success_message
+        centered_success_message = center_message(success_message)
+        return centered_success_message
     except Exception as e:
          error_message = "\033[1;31mError: {}\033[0m".format(str(e))
-         print(error_message) 
+         centered_error_message = center_message(error_message)
+         print(centered_error_message)
     
     finally:
         connection.close()
