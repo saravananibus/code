@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+from termcolor import colored
 import pymysql
 
 app = Flask(__name__)
